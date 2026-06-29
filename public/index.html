@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>ContractSecure | UK Procurement Platform</title>
+  <meta name="description" content="Premium UK infrastructure, construction, civil works, and goods supply procurement platform." />
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+  <div id="loader" class="loader">
+    <div class="loader-mark">CS</div>
+    <p>Loading ContractSecure...</p>
+  </div>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="#" class="brand">
+        <span class="brand-mark">CS</span>
+        <span>ContractSecure</span>
+      </a>
+
+      <button class="mobile-toggle" id="mobileToggle">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <nav class="nav-menu" id="navMenu">
+        <a href="#contracts">Contracts</a>
+        <a href="#estimator">Estimator</a>
+        <a href="#apply">Apply</a>
+        <a href="#payment">Payment</a>
+        <a href="#terms">Terms</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">
+            <i class="fa-solid fa-shield-halved"></i>
+            Premium UK Procurement Intelligence
+          </span>
+
+          <h1>Secure Multi-Million Pound UK Infrastructure & Procurement Contracts.</h1>
+
+          <p>
+            ContractSecure helps qualified contractors, civil firms, commercial suppliers, and infrastructure operators discover high-value UK tender opportunities with structured application review, fee estimation, and secure documentation workflow.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#contracts" class="btn btn-primary">
+              <i class="fa-solid fa-briefcase"></i>
+              Browse Active Tenders
+            </a>
+
+            <a href="#estimator" class="btn btn-secondary">
+              <i class="fa-solid fa-calculator"></i>
+              Run AI Fee Estimate
+            </a>
+          </div>
+        </div>
+
+        <aside class="hero-panel">
+          <div class="hero-image"></div>
+
+          <div class="live-row">
+            <span class="live-dot">Live Procurement Desk</span>
+            <span>UK Market</span>
+          </div>
+
+          <div class="metric-large">
+            <span>Active Tender Pipeline</span>
+            <strong>£124.8M</strong>
+          </div>
+
+          <div class="metric-grid">
+            <div>
+              <span>Average Review</span>
+              <strong>24h</strong>
+            </div>
+            <div>
+              <span>Contract Categories</span>
+              <strong>12+</strong>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="sponsor-strip">
+      <div class="container">
+        <p>Enterprise procurement ecosystem examples</p>
+
+        <div class="sponsor-grid">
+          <div>Balfour Beatty</div>
+          <div>Kier Group</div>
+          <div>Morgan Sindall</div>
+          <div>National Rail</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-label">Operational Workflow</span>
+          <h2>How ContractSecure Works</h2>
+          <p>A structured application and allocation workflow for serious applicants seeking high-value UK procurement opportunities.</p>
+        </div>
+
+        <div class="steps-grid">
+          <article>
+            <span>01</span>
+            <h3>Application</h3>
+            <p>Apply for £1M+ infrastructure, commercial, civil, and supply contracts.</p>
+          </article>
+
+          <article>
+            <span>02</span>
+            <h3>AI Matrix Calculation</h3>
+            <p>Run sector, value, location, risk, and capacity checks using the estimator workflow.</p>
+          </article>
+
+          <article>
+            <span>03</span>
+            <h3>Fee Review</h3>
+            <p>Review disclosed processing or allocation fee before payment acceptance.</p>
+          </article>
+
+          <article>
+            <span>04</span>
+            <h3>Automated Delivery</h3>
+            <p>Receive digital commencement notices and procurement documentation by email.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section visual-section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-label">Contract Categories</span>
+          <h2>Major Contract Work Areas</h2>
+          <p>High-value categories across construction, public works, facility upgrades, logistics, and supply procurement.</p>
+        </div>
+
+        <div class="category-grid">
+          <article class="category-card road">
+            <div>
+              <h3>Road Construction</h3>
+              <p>Highways, resurfacing, drainage, bridge access, and route expansion.</p>
+            </div>
+          </article>
+
+          <article class="category-card building">
+            <div>
+              <h3>Commercial Buildings</h3>
+              <p>Offices, civic centres, public buildings, and facility modernization.</p>
+            </div>
+          </article>
+
+          <article class="category-card housing">
+            <div>
+              <h3>Housing Development</h3>
+              <p>Residential schemes, public housing upgrades, and estate delivery.</p>
+            </div>
+          </article>
+
+          <article class="category-card supply">
+            <div>
+              <h3>Goods Supply</h3>
+              <p>Medical supplies, equipment, logistics, fleet, and essential materials.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contracts" class="section contracts-section">
+      <div class="container">
+        <div class="section-head row-head">
+          <div>
+            <span class="section-label">Active Tenders</span>
+            <h2>Available Contract Opportunities</h2>
+            <p>Select a contract to update the estimator and payment review section.</p>
+          </div>
+        </div>
+
+        <div class="filter-bar">
+          <input type="search" id="searchInput" placeholder="Search by title, category, or location..." />
+
+          <select id="categoryFilter">
+            <option value="All">All Categories</option>
+            <option value="Road Construction">Road Construction</option>
+            <option value="Commercial Buildings">Commercial Buildings</option>
+            <option value="Goods Supply">Goods Supply</option>
+            <option value="Railway Works">Railway Works</option>
+            <option value="Housing Development">Housing Development</option>
+            <option value="Facility Maintenance">Facility Maintenance</option>
+          </select>
+        </div>
+
+        <div id="contractsGrid" class="contracts-grid"></div>
+      </div>
+    </section>
+
+    <section id="estimator" class="section estimator-section">
+      <div class="container">
+        <div class="estimator-panel">
+          <div class="section-head">
+            <span class="section-label">AI Fee Estimator</span>
+            <h2>Estimate Contract Allocation Fee</h2>
+            <p>Calculate estimated fee exposure using contract value and sector risk weighting.</p>
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="estimateCategory">Contract Category</label>
+              <select id="estimateCategory">
+                <option value="Road Construction">Road Construction</option>
+                <option value="Commercial Buildings">Commercial Buildings</option>
+                <option value="Goods Supply">Goods Supply</option>
+                <option value="Railway Works">Railway Works</option>
+                <option value="Housing Development">Housing Development</option>
+                <option value="Facility Maintenance">Facility Maintenance</option>
+                <option value="Electrical Installation">Electrical Installation</option>
+                <option value="Medical Supply">Medical Supply</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="estimateValue">Contract Value, £ millions</label>
+              <input id="estimateValue" type="number" min="1" max="500" value="25" />
+              <input id="estimateSlider" type="range" min="1" max="500" value="25" />
+            </div>
+          </div>
+
+          <div class="fee-grid">
+            <div>
+              <span>Base Fee</span>
+              <strong id="baseFee">£0</strong>
+            </div>
+            <div>
+              <span>Sector Risk Adjustment</span>
+              <strong id="riskFee">£0</strong>
+            </div>
+            <div class="highlight">
+              <span>Final Allocation Fee</span>
+              <strong id="totalFee">£0</strong>
+            </div>
+          </div>
+
+          <p class="warning-box">
+            Payment terms must be reviewed before acceptance. Any fee must be clearly disclosed and connected to the stated application or administrative process.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="apply" class="section">
+      <div class="container">
+        <div class="application-panel">
+          <div class="section-head">
+            <span class="section-label">Application Form</span>
+            <h2>Submit Contract Request</h2>
+            <p>Provide company details, contract interest, capacity, and supporting documents.</p>
+          </div>
+
+          <form id="contractForm" enctype="multipart/form-data">
+            <div class="form-grid">
+              <div class="field">
+                <label for="fullName">Full Name</label>
+                <input id="fullName" name="fullName" type="text" required />
+              </div>
+
+              <div class="field">
+                <label for="companyName">Company Name</label>
+                <input id="companyName" name="companyName" type="text" required />
+              </div>
+
+              <div class="field">
+                <label for="email">Email Address</label>
+                <input id="email" name="email" type="email" required />
+              </div>
+
+              <div class="field">
+                <label for="phone">Phone Number</label>
+                <input id="phone" name="phone" type="tel" required />
+              </div>
+
+              <label for="password">Create Password</label>
+
+            <input
+              id="password"
+              name="password"
+              type="password"
+              minlength="8"
+              placeholder="Create a secure password"
+              required
+            >
+
+              <div class="field">
+                <label for="neededCategory">Contract Category Needed</label>
+                <select id="neededCategory" name="neededCategory">
+                  <option>Road Construction</option>
+                  <option>Commercial Buildings</option>
+                  <option>Goods Supply</option>
+                  <option>Railway Works</option>
+                  <option>Housing Development</option>
+                  <option>Facility Maintenance</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="preferredLocation">Preferred Location</label>
+                <input id="preferredLocation" name="preferredLocation" type="text" />
+              </div>
+
+              <div class="field">
+                <label for="capacity">Estimated Company Capacity</label>
+                <select id="capacity" name="capacity">
+                  <option>£1M to £5M</option>
+                  <option>£5M to £15M</option>
+                  <option>£15M to £50M</option>
+                  <option>£50M+</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="experience">Previous Contract Experience</label>
+                <select id="experience" name="experience">
+                  <option>1 to 3 completed contracts</option>
+                  <option>4 to 10 completed contracts</option>
+                  <option>10+ completed contracts</option>
+                  <option>New applicant with verified capacity</option>
+                </select>
+              </div>
+
+              <div class="field full-field">
+                <label for="selectedContractInput">Selected Contract</label>
+                <input id="selectedContractInput" name="selectedContract" type="text" readonly />
+              </div>
+
+              <div class="field full-field">
+                <label for="documents">Upload Company Documents</label>
+                <input id="documents" name="documents" type="file" multiple />
+              </div>
+
+              <div class="field full-field">
+                <label for="message">Contract Details</label>
+                <textarea id="message" name="message"></textarea>
+              </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">
+              <i class="fa-solid fa-paper-plane"></i>
+              Submit Contract Request
+            </button>
+
+            <div id="formSuccess" class="success-message"></div>
+            <div id="formError" class="error-message"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="payment" class="section payment-section">
+      <div class="container">
+        <div class="payment-panel">
+          <div class="section-head">
+            <span class="section-label">Payment Review</span>
+            <h2>Fee Payment Section</h2>
+            <p>Review selected contract and fee before secure payment processing.</p>
+          </div>
+
+          <div class="fee-grid">
+            <div>
+              <span>Selected Contract</span>
+              <strong id="selectedContract">No contract selected</strong>
+            </div>
+            <div>
+              <span>Estimated Contract Value</span>
+              <strong id="selectedContractValue">£0</strong>
+            </div>
+            <div class="highlight">
+              <span>Fee Amount</span>
+              <strong id="feeAmount">£0</strong>
+            </div>
+          </div>
+
+          <p class="warning-box">
+            Do not proceed unless the applicant has reviewed the contract details, fee terms, eligibility requirements, and refund conditions.
+          </p>
+
+          <button id="cryptoPaymentBtn" type="button" class="btn btn-primary crypto-main-pay-btn">
+            <i class="fa-solid fa-wallet"></i>
+            Continue to Secure Payment
+          </button>
+
+          <div id="paymentNotice" class="success-message"></div>
+          <div id="paymentError" class="error-message"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="terms" class="section terms-section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-label">Legal Terms</span>
+          <h2>Terms and Conditions</h2>
+          <p>Condensed operational terms for applicant review before submission or payment.</p>
+        </div>
+
+        <div class="terms-grid">
+          <article><h3>Eligibility</h3><p>Applicants must provide accurate company, capacity, and contact details.</p></article>
+          <article><h3>Application Review</h3><p>Submission does not guarantee contract award or procurement acceptance.</p></article>
+          <article><h3>Fee Disclosure</h3><p>Any processing or allocation fee must be clearly shown before payment.</p></article>
+          <article><h3>Refund Policy</h3><p>Refund eligibility depends on fee type, processing stage, and opportunity availability.</p></article>
+          <article><h3>Document Verification</h3><p>Uploaded documents may be reviewed for identity, registration, and capacity.</p></article>
+          <article><h3>Third-Party Restriction</h3><p>Unauthorised assignment or resale may render access null and void ab initio.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="#" class="brand">
+          <span class="brand-mark">CS</span>
+          <span>ContractSecure</span>
+        </a>
+        <p>Premium UK procurement intelligence for high-value contract applicants.</p>
+      </div>
+
+      <div>
+        <h3>Support</h3>
+        <p>221B Baker Street, London, United Kingdom</p>
+        <p>support@contractsecure.co.uk</p>
+        <p>+44 20 7946 0842</p>
+      </div>
+    </div>
+  </footer>
+    
+  <div id="paymentModal" class="payment-modal hidden">
+  <div class="payment-card payment-card-v2">
+    <div class="payment-head">
+      <div>
+        <span class="payment-badge">Secure Crypto Payment</span>
+        <h2>Complete Secure Payment</h2>
+        <p>Submit your BTC or USDT transaction details for finance verification.</p>
+      </div>
+
+      <button id="closePaymentModal" type="button" class="payment-x">×</button>
+    </div>
+
+    <div class="payment-summary">
+      <div>
+        <span>Selected Contract</span>
+        <strong id="modalContractName">No contract selected</strong>
+      </div>
+
+      <div>
+        <span>Fee Amount</span>
+        <strong id="modalFeeAmount">£0</strong>
+      </div>
+    </div>
+
+    <label for="paymentMethod">Payment Method</label>
+    <select id="paymentMethod">
+      <option value="BTC">Bitcoin BTC</option>
+      <option value="USDT_TRC20">USDT TRC20</option>
+      <option value="USDT_ERC20">USDT ERC20</option>
+    </select>
+
+    <div class="wallet-box">
+      <div>
+        <span id="networkLabel">Bitcoin Network</span>
+        <strong id="walletAddressText">Loading wallet address...</strong>
+      </div>
+
+      <button id="copyWallet" type="button">Copy</button>
+    </div>
+
+    <label for="paymentEmail">Email Address</label>
+    <input id="paymentEmail" type="email" placeholder="Enter email for payment confirmation">
+
+    <label for="txHash">Transaction Hash</label>
+    <input id="txHash" placeholder="Paste blockchain transaction hash">
+
+    <label for="paymentAmount">Amount Paid</label>
+    <input id="paymentAmount" placeholder="Example: 250 USDT or 0.004 BTC">
+
+    <div id="paymentSuccessBox" class="payment-success-box hidden">
+      <strong>Payment Submitted</strong>
+      <span>Your payment has been submitted for verification.</span>
+    </div>
+
+    <div class="payment-actions">
+      <button id="submitCryptoPayment" type="button" class="crypto-submit-btn">
+        Submit Payment for Verification
+      </button>
+
+      <button id="cancelPaymentModal" type="button" class="crypto-cancel-btn">
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+  window.addEventListener("load", function () {
+    document.body.classList.add("loaded");
+  });
+
+  setTimeout(function () {
+    document.body.classList.add("loaded");
+  }, 1500);
+</script>
+
+  <script src="app.js"></script>
+</body>
+</html>
