@@ -813,14 +813,14 @@ router.post("/admin/payment/:id/reject", requireLogin, async (req, res) => {
   try {
   await sendEmail({
     to: payment.email,
-    subject: "ContractSecure Payment Confirmed",
-    html: `
-      <h2>Payment Confirmed</h2>
-      <p>Your submitted payment has been verified successfully.</p>
-      <p><strong>Reference:</strong> ${payment.reference}</p>
-      <p><strong>Contract:</strong> ${payment.contract}</p>
-      <p><strong>Status:</strong> Payment Confirmed</p>
-      <p>Your application has now moved to procurement evaluation.</p>
+     subject: "ContractSecure Payment Update",
+  html: `
+    <h2>Payment Not Approved</h2>
+    <p>Your submitted payment could not be verified at this stage.</p>
+    <p><strong>Reference:</strong> ${payment.reference}</p>
+    <p><strong>Contract:</strong> ${payment.contract}</p>
+    <p><strong>Status:</strong> Payment Rejected</p>
+    <p>Please contact ContractSecure support if you believe this was a mistake or if you need to resubmit payment proof.</p>
     `
   });
 } catch (error) {
