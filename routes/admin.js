@@ -2,6 +2,7 @@ const express = require("express");
 const db = require("../database/database");
 const requireLogin = require("../middleware/auth");
 const { sendEmail } = require("../services/email");
+const bcrypt = require("bcrypt");
 
 const router = express.Router();
 
@@ -252,8 +253,8 @@ const awaitingPayment = parsedApplications.filter(
   app => (app.paymentStatus || "Awaiting Payment") === "Awaiting Payment"
 ).length;
 
-const paymentConfirmed = payments.filter(
-  pay => pay.status === "Approved"
+const paymentConfirmed = parsedApplications.filter(
+  app => app.paymentStatus === "Approved"
 ).length;
 
 const contractsAwarded = parsedApplications.filter(
@@ -763,6 +764,16 @@ router.post("/admin/payment/:id/approve", requireLogin, async (req, res) => {
     WHERE id = ?
   `).run("Approved", paymentId);
 
+  db.prepare(`
+    UPDATE applications
+    SET
+        paymentStatus = 'Payment Confirmed',
+        procurementStatus = 'In Progress',
+        procurementReference = ?
+    WHERE email = ?
+    AND contract = ?
+    `).run(procurementRef, payment.email, payment.contract);
+
   try {
   await sendEmail({
     to: payment.email,
@@ -770,10 +781,12 @@ router.post("/admin/payment/:id/approve", requireLogin, async (req, res) => {
     html: `
       <h2>Payment Approved Successfully</h2>
       <p>Your submitted payment has been verified successfully.</p>
-      <p><strong>Payment Reference:</strong> ${payment.reference}</p>
+      <p><strong>Reference:</strong> ${payment.reference}</p>
+      <p><strong>Procurement Reference:</strong> ${procurementRef}</p>
       <p><strong>Contract:</strong> ${payment.contract}</p>
       <p><strong>Status:</strong> Payment Confirmed</p>
-      <p>This update only confirms your payment. Your application status will be handled separately by the ContractSecure review team.</p>
+      <p>Your payment has been approved and your application has entered the procurement evaluation
+      stage. please keep your Procurement Reference for future correspondence with ContractSecure</p>
     `
   });
 } catch (error) {
@@ -801,14 +814,14 @@ router.post("/admin/payment/:id/reject", requireLogin, async (req, res) => {
   try {
   await sendEmail({
     to: payment.email,
-    subject: "ContractSecure Payment Update",
+    subject: "ContractSecure Payment Confirmed",
     html: `
-      <h2>Payment Not Approved</h2>
-      <p>Your submitted payment could not be verified at this stage.</p>
+      <h2>Payment Confirmed</h2>
+      <p>Your submitted payment has been verified successfully.</p>
       <p><strong>Reference:</strong> ${payment.reference}</p>
       <p><strong>Contract:</strong> ${payment.contract}</p>
-      <p><strong>Status:</strong> Payment Rejected</p>
-      <p>Please contact ContractSecure support if you believe this was a mistake or if you need to resubmit payment proof.</p>
+      <p><strong>Status:</strong> Payment Confirmed</p>
+      <p>Your application has now moved to procurement evaluation.</p>
     `
   });
 } catch (error) {
@@ -946,30 +959,45 @@ router.post("/admin/application/:id/approve", requireLogin, async (req, res) => 
     application.procurementReference ||
     "CS-" + Math.floor(1000000000 + Math.random() * 9000000000);
 
+  let generatedPassword = null;
+  let passwordHash = application.password;
+
+  if (!passwordHash) {
+    generatedPassword = "CS-" + Math.floor(100000 + Math.random() * 900000);
+    passwordHash = bcrypt.hashSync(generatedPassword, 10);
+  }
+
   db.prepare(`
     UPDATE applications
     SET
       procurementStatus = ?,
       paymentStatus = ?,
-      procurementReference = ?
+      procurementReference = ?,
+      password = ?
     WHERE id = ?
-  `).run("Approved", "Awaiting Payment", procurementRef, applicationId);
+  `).run("Approved", "Awaiting Payment", procurementRef, passwordHash, applicationId);
 
-try {
-  await sendEmail({
-    to: application.email,
-    subject: "ContractSecure Application Approved",
-    html: `
-      <h2>Application Approved</h2>
-      <p>Your procurement application has been approved.</p>
-      <p><strong>Contract:</strong> ${application.contract}</p>
-      <p><strong>Procurement Reference:</strong> ${procurementRef}</p>
-      <p>Your application has been approved. Please proceed with the required payment step separately.</p>
-    `
-  });
-} catch (error) {
-  console.log("Approval email failed:", error.message);
-}
+  try {
+    await sendEmail({
+      to: application.email,
+      subject: "ContractSecure Application Approved",
+      html: `
+        <h2>Application Approved</h2>
+        <p>Your procurement application has been approved.</p>
+        <p><strong>Contract:</strong> ${application.contract}</p>
+        <p><strong>Procurement Reference:</strong> ${procurementRef}</p>
+        ${generatedPassword ? `
+          <p><strong>Your Login Password:</strong> ${generatedPassword}</p>
+          <p>Please keep this password safe. You can use it to access your applicant dashboard.</p>
+        ` : `
+          <p>You can log in using the password you created during application.</p>
+        `}
+        <p>You can now log in to your applicant dashboard to track progress.</p>
+      `
+    });
+  } catch (error) {
+    console.log("Approval email failed:", error.message);
+  }
 
   res.redirect("/admin");
 });

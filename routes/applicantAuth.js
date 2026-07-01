@@ -143,16 +143,14 @@ router.post("/applicant-login", (req, res) => {
     SELECT *
     FROM applications
     WHERE email = ?
+      AND password IS NOT NULL
+      AND password != ''
     ORDER BY id DESC
     LIMIT 1
   `).get(email);
 
   if (!applicant) {
-    return res.send("No application found for this email.");
-  }
-
-  if (!applicant.password) {
-    return res.send("No password has been created for this application yet.");
+    return res.send("No application with a login password was found for this email. Please wait for admin approval or contact support.");
   }
 
   const validPassword = bcrypt.compareSync(password, applicant.password);

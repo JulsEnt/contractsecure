@@ -44,7 +44,7 @@ router.post("/api/apply", upload.array("documents", 8), (req, res) => {
     experience: req.body.experience || "",
     message: req.body.message || "",
     documents: JSON.stringify(documents),
-    password: bcrypt.hashSync(req.body.password, 10),
+    password: req.body.password ? bcrypt.hashSync(req.body.password, 10) : "",
     createdAt
   };
 
